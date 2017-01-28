@@ -19,9 +19,5 @@
     },
     "cors": false
   },
-  "legacyExplorer": false,
-  "loopback-graphql": {
-    "path": "/graphql",
-    "graphiqlPath": "/graphiql"
-  }
+  "legacyExplorer": false
 }

@@ -1,3 +1,53 @@
+swagger: '2.0'
+
+info:
+  x-ibm-name: backend
+  version: 1.0.0
+  title: backend
+
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /api
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+securityDefinitions:
+ clientIdHeader:
+   type: apiKey
+   in: header
+   name: X-IBM-Client-Id
+ clientSecretHeader:
+   in: "header"
+   name: "X-IBM-Client-Secret"
+   type: "apiKey"
+
+
+security:
+ -
+   clientIdHeader: []
+   clientSecretHeader: []
+
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4001'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)
+
 paths:
   '/Users/{id}/accessTokens/{fk}':
     get:
@@ -192,9 +242,7 @@ paths:
     put:
       tags:
         - User
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: User.upsert__put_Users
       parameters:
         - name: data
@@ -213,9 +261,7 @@ paths:
     patch:
       tags:
         - User
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: User.upsert__patch_Users
       parameters:
         - name: data
@@ -255,9 +301,7 @@ paths:
     post:
       tags:
         - User
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
+      summary: Replace an existing model instance or insert a new one into the data source.
       operationId: User.replaceOrCreate
       parameters:
         - name: data
@@ -277,9 +321,7 @@ paths:
     post:
       tags:
         - User
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
       operationId: User.upsertWithWhere
       parameters:
         - name: where
@@ -390,9 +432,7 @@ paths:
     put:
       tags:
         - User
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'User.prototype.updateAttributes__put_Users_{id}'
       parameters:
         - name: data
@@ -417,9 +457,7 @@ paths:
     patch:
       tags:
         - User
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'User.prototype.updateAttributes__patch_Users_{id}'
       parameters:
         - name: data
@@ -445,9 +483,7 @@ paths:
     post:
       tags:
         - User
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
+      summary: Replace attributes for a model instance and persist it into the data source.
       operationId: User.replaceById
       parameters:
         - name: id
@@ -557,9 +593,7 @@ paths:
             type: object
         - name: include
           in: query
-          description: >-
-            Related objects to include in the response. See the description of
-            return value for more details.
+          description: Related objects to include in the response. See the description of return value for more details.
           required: false
           type: string
           format: JSON
@@ -568,11 +602,11 @@ paths:
           description: Request was successful
           schema:
             description: >+
-              The response body contains properties of the AccessToken created
-              on login.
+              The response body contains properties of the AccessToken created on
+              login.
 
-              Depending on the value of `include` parameter, the body may
-              contain additional properties:
+              Depending on the value of `include` parameter, the body may contain
+              additional properties:
 
 
 
@@ -637,25 +671,368 @@ paths:
         '204':
           description: Request was successful
       deprecated: false
-  /Messages/greet:
+  /Notes:
+    post:
+      tags:
+        - Note
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Note.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+    put:
+      tags:
+        - Note
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Note.upsert__put_Notes
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+    patch:
+      tags:
+        - Note
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Note.upsert__patch_Notes
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
     get:
       tags:
-        - Message
-      operationId: Message.greet
+        - Note
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: Note.find
       parameters:
-        - name: msg
+        - name: filter
           in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
           required: false
           type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Note'
+      deprecated: false
+  /Notes/replaceOrCreate:
+    post:
+      tags:
+        - Note
+      summary: Replace an existing model instance or insert a new one into the data source.
+      operationId: Note.replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+  /Notes/upsertWithWhere:
+    post:
+      tags:
+        - Note
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
+      operationId: Note.upsertWithWhere
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+  '/Notes/{id}/exists':
+    get:
+      tags:
+        - Note
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Note.exists__get_Notes_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
       responses:
         '200':
           description: Request was successful
           schema:
             type: object
             properties:
-              greeting:
-                type: string
+              exists:
+                type: boolean
       deprecated: false
+  '/Notes/{id}':
+    head:
+      tags:
+        - Note
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Note.exists__head_Notes_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - Note
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: Note.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+    delete:
+      tags:
+        - Note
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: Note.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - Note
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Note.prototype.updateAttributes__put_Notes_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Note'
+        - name: id
+          in: path
+          description: Note id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+    patch:
+      tags:
+        - Note
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Note.prototype.updateAttributes__patch_Notes_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Note'
+        - name: id
+          in: path
+          description: Note id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+  '/Notes/{id}/replace':
+    post:
+      tags:
+        - Note
+      summary: Replace attributes for a model instance and persist it into the data source.
+      operationId: Note.replaceById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+  /Notes/findOne:
+    get:
+      tags:
+        - Note
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: Note.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Note'
+      deprecated: false
+  /Notes/update:
+    post:
+      tags:
+        - Note
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: Note.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Information related to the outcome of the operation
+            type: object
+            properties:
+              count:
+                description: The number of instances updated
+                type: number
+                format: double
+      deprecated: false
+  /Notes/count:
+    get:
+      tags:
+        - Note
+      summary: Count instances of the model matched by where from the data source.
+      operationId: Note.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+
+
 definitions:
   x-any:
     properties: {}
@@ -705,45 +1082,16 @@ definitions:
     required:
       - email
     additionalProperties: false
-basePath: /api
-swagger: '2.0'
-info:
-  x-ibm-name: budget
-  version: 1.0.0
-  title: budget
-schemes:
-  - https
-  - http
-host: $(catalog.host)
-consumes:
-  - application/json
-produces:
-  - application/json
-securityDefinitions:
-  clientIdHeader:
-    type: apiKey
-    in: header
-    name: X-IBM-Client-Id
-  clientSecretHeader:
-    in: header
-    name: X-IBM-Client-Secret
-    type: apiKey
-security:
-  - clientIdHeader: []
-    clientSecretHeader: []
-x-ibm-configuration:
-  testable: true
-  enforced: true
-  cors:
-    enabled: true
-  catalogs:
-    apic-dev:
-      properties:
-        runtime-url: $(TARGET_URL)
-    sb:
-      properties:
-        runtime-url: 'http://localhost:4001'
-  assembly:
-    execute:
-      - invoke:
-          target-url: $(runtime-url)$(request.path)$(request.search)
+  Note:
+    properties:
+      title:
+        type: string
+      content:
+        type: string
+      id:
+        type: number
+        format: double
+    required:
+      - title
+    additionalProperties: false
+

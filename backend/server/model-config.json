@@ -32,7 +32,7 @@
     "dataSource": "db",
     "public": false
   },
-  "Message": {
-    "dataSource": null
+  "Note": {
+    "dataSource": "db"
   }
 }

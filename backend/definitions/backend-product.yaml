@@ -1,13 +1,13 @@
 product: '1.0.0'
 
 info:
-  name: budget
-  title: budget
+  name: backend
+  title: backend
   version: 1.0.0
 
 apis:
-  'budget':
-    $ref: budget.yaml
+  'backend':
+    $ref: backend.yaml
 
 visibility:
   view:
