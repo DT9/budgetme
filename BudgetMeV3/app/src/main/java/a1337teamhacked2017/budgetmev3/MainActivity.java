@@ -6,8 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+=======
+>>>>>>> parent of 09ecf85... Got Firebase to work
 =======
 >>>>>>> parent of 09ecf85... Got Firebase to work
 public class MainActivity extends AppCompatActivity {
