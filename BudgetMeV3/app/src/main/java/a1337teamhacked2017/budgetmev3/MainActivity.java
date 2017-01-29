@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-=======
->>>>>>> parent of 09ecf85... Got Firebase to work
-=======
->>>>>>> parent of 09ecf85... Got Firebase to work
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("MY NAME IS... NINOOOO!");
     }
 
     @Override
