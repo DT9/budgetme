@@ -16,7 +16,7 @@ import android.view.View;
  */
 public class Circle extends View {
 
-    private static final int START_ANGLE_POINT = 90;
+    private static final int START_ANGLE_POINT = -90;
 
     private final Paint paint;
     private final RectF rect;
@@ -36,10 +36,10 @@ public class Circle extends View {
         paint.setColor(Color.RED);
 
         //size 200x200 example
-        rect = new RectF(strokeWidth, strokeWidth, 200 + strokeWidth, 200 + strokeWidth);
+        rect = new RectF(strokeWidth, strokeWidth, 400 + strokeWidth, 400 + strokeWidth);
 
         //Initial Angle (optional, it can be zero)
-        angle = 120;
+        angle = 0;
     }
 
     @Override
