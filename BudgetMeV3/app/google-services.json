@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1049402157:android:3fdffec2dc25deee",
+        "mobilesdk_app_id": "1:1049402157:android:bfcbea6b2894f7f7",
         "android_client_info": {
-          "package_name": "a1337teamhacked2017.budgetmev3"
+          "package_name": "com.a1337teamhacked2017.budgetmev3"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "1049402157-q0qmg6ui4p9rjogcgje6d841ertd08lh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "a1337teamhacked2017.budgetmev3",
-            "certificate_hash": "F9E62F8A945726A967F5C7C19BC0E9BDF978158E"
-          }
-        },
         {
           "client_id": "1049402157-b032msljul9f0f992mhnn7bmlkkmhm91.apps.googleusercontent.com",
           "client_type": 3
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1049402157-b032msljul9f0f992mhnn7bmlkkmhm91.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1049402157-qf0s4ef7l926gn3igc97larav0o808ap.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.1337teamhacked2017.BudgetMe"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
