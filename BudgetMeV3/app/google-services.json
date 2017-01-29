@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1049402157",
+    "firebase_url": "https://budgetme-1c2fb.firebaseio.com",
+    "project_id": "budgetme-1c2fb",
+    "storage_bucket": "budgetme-1c2fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049402157:android:bfcbea6b2894f7f7",
+        "android_client_info": {
+          "package_name": "com.a1337teamhacked2017.budgetmev3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049402157-b032msljul9f0f992mhnn7bmlkkmhm91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKB1h3Kw0ngW8ZW2V99d0jkI2YoWZIqQE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
