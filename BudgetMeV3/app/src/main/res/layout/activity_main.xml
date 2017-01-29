@@ -16,4 +16,12 @@
         app:titleTextColor="@android:color/white"
         android:background="?attr/colorPrimary">
     </android.support.v7.widget.Toolbar>
+
+    <a1337teamhacked2017.budgetmev3.Circle
+        android:id="@+id/circle"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

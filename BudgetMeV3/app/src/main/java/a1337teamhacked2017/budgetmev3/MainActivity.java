@@ -22,6 +22,13 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("MY NAME IS... NINOOOO!");
+
+        //Do circle stuff
+        Circle circle = (Circle) findViewById(R.id.circle);
+
+        CircleAngleAnimation animation = new CircleAngleAnimation(circle, 240);
+        animation.setDuration(1000);
+        circle.startAnimation(animation);
     }
 
     @Override
